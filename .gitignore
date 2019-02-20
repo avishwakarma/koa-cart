@@ -1,0 +1,10 @@
+.vscode
+node_modules
+build/*
+logs/*
+uploads/*
+!uploads/.gitkeep
+!logs/.gitkeep
+!build/.gitkeep
+.env
+!**/**/.gitkeep
