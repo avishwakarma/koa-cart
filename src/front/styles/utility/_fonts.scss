@@ -1,0 +1,27 @@
+@font-face {
+  @include font(Icon, '/assets/fonts/icons/icon-v2', normal, normal);
+}
+
+@font-face {
+  @include font(Lato, '/assets/fonts/lato/lato-400', 400, normal);
+}
+
+@font-face {
+  @include font(Lato, '/assets/fonts/lato/lato-400italic', 400, italic);
+}
+
+@font-face {
+  @include font(Lato, '/assets/fonts/lato/lato-700', 700, normal);
+}
+
+@font-face {
+  @include font(Lato, '/assets/fonts/lato/lato-700italic', 700, italic);
+}
+
+@font-face {
+  @include font(Lato, '/assets/fonts/lato/lato-900', 900, normal);
+}
+
+@font-face {
+  @include font(Lato, '/assets/fonts/lato/lato-900italic', 900, italic);
+}

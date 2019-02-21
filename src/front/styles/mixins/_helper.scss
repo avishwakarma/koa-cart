@@ -1,0 +1,102 @@
+@mixin box-shadow($shadow){
+  -webkit-box-shadow: $shadow;
+          box-shadow: $shadow;
+}
+
+@mixin transition($transtion){
+  -webkit-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
+
+@mixin translate($x, $y){
+  -webkit-transform: translate($x, $y);
+      -ms-transform: translate($x, $y);
+       -o-transform: translate($x, $y);
+          transform: translate($x, $y);
+}
+
+@mixin scale($ratio...) {
+  -webkit-transform: scale($ratio);
+      -ms-transform: scale($ratio);
+       -o-transform: scale($ratio);
+          transform: scale($ratio);
+}
+
+@mixin user-select($select) {
+  -webkit-user-select: $select;
+     -moz-user-select: $select;
+      -ms-user-select: $select;
+          user-select: $select;
+}
+
+@mixin font($family, $path, $weight, $style){
+  font-family: $family;
+  src:url($path + ".svg");
+  src:url($path + ".eot?#iefix") format("embedded-opentype"),
+  url($path + ".woff") format("woff"),
+  url($path + ".ttf") format("truetype"),
+  url($path + ".svg#dripicons-v2") format("svg");
+  font-weight: $weight;
+  font-style: $style;
+}
+
+@mixin weight(){
+  @each $weight in $weights{
+    .weight#{$weight} {
+      font-weight: $weight !important;
+    }
+  }
+}
+
+@mixin color-bg-border() {
+  @each $color in  $colors {
+    .#{nth($color, 1)}-color {
+      color: #{nth($color, 2)};
+    }
+
+    .#{nth($color, 1)}-bg {
+      background-color: #{nth($color, 2)};
+    }
+
+    .#{nth($color, 1)}-border {
+      border-color: #{nth($color, 2)};
+    }
+  }
+}
+
+@mixin align() {
+  @each $align in $aligns {
+    .text-#{$align} {
+      text-align: #{$align};
+    }
+  }
+}
+
+@mixin font-sizes(){
+  @each $font-size in $font-sizes {
+    .px#{nth($font-size, 1)} {
+      font-size: #{nth($font-size, 2)}rem;
+      line-height: #{nth($font-size, 2) + (nth($font-size, 2) / 2)}rem
+    }
+  }
+}
+
+@mixin tags {
+  .tag{
+    padding: 3px 5px;
+    display: inline-block;
+    background: $light-grey;
+    color: $black;
+    border-radius: $radius;
+    font-size: 10px;
+    font-weight: 700;
+
+    @each $color in $colors {
+      &.#{nth($color, 1)} {
+        background: #{nth($color, 2)};
+        color: $white;
+      }
+    }
+  }
+}

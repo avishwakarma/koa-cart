@@ -1,0 +1,91 @@
+$red: #de4c34;
+$pink: #af2279;
+$purple: #7f22af;
+$blue: #2f4a9a; 
+$yellow: #d2a818;
+$green: #24b386;
+$dgreen: #1ab516;
+$black: #290d3e;
+$skyblue: #2272af;
+$lblue: #197fe7;
+$mustard: #93af22;
+$orange: #e78419;
+$grey: #585858;
+$light-grey: #898989;
+$super-light-grey: #f0f0f0;
+$white: #ffffff;
+$off-white: #f6f6f6; 
+$link: #1e7ea9;
+$disabled-color: #898989;
+
+$font-family: 'Lato', sans-serif;
+
+$colors: 
+  "white" $white,
+  "green" $green,
+  "dgreen" $dgreen,
+  "pink" $pink,
+  "purple" $purple,
+  "red" $red,
+  "black" $black,
+  "skyblue" $skyblue,
+  "mustard" $mustard,
+  "orange" $orange,
+  "blue" $blue,
+  "lblue" $lblue,
+  "yellow" $yellow,
+  "light-grey" $light-grey,
+  "off-white" $off-white,
+  "grey" $grey,
+  "super-light-grey" $super-light-grey,
+  "link" $link;
+
+$weights: (400, 700, 900);
+$aligns: (left, center, right);
+$font-sizes: 
+  "32" 2.24,
+  "24" 1.82,
+  "18" 1.36,
+  "16" 1.21,
+  "14" 1.06,
+  "12" 0.91,
+  "10" 0.76;
+
+$radius: 0.21rem;
+$default-weight: 700;
+
+$box-shadow: 0 0.7rem 1.75rem rgba(0, 0, 0, 0.20);
+$default-box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.15);
+$transition: all 0.3s linear;
+
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 2.1rem !default;
+$container-tablet: (50.4rem + $grid-gutter-width) !default;
+$container-sm: $container-tablet !default;
+
+$container-desktop: (65.8rem + $grid-gutter-width) !default;
+$container-md:$container-desktop !default;
+
+$container-large-desktop: (79.8rem + $grid-gutter-width) !default;
+$container-lg: $container-large-desktop !default;
+$screen-xs: 33.6rem !default;
+$screen-xs-min: $screen-xs !default;
+$screen-phone: $screen-xs-min !default;
+
+$screen-sm: 53.76rem !default;
+$screen-sm-min: $screen-sm !default;
+$screen-tablet: $screen-sm-min !default;
+
+$screen-md: 69.44rem !default;
+$screen-md-min: $screen-md !default;
+$screen-desktop: $screen-md-min !default;
+
+$screen-lg: 84rem!default;
+$screen-lg-min: $screen-lg !default;
+$screen-lg-desktop: $screen-lg-min !default;
+
+$screen-xs-max: ($screen-sm-min - 1) !default;
+$screen-sm-max: ($screen-md-min - 1) !default;
+$screen-md-max: ($screen-lg-min - 1) !default;
+
