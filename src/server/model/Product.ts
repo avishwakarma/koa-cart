@@ -3,6 +3,7 @@ import { message } from '../../constant';
 
 const ProductSchema = new mongoose.Schema({
   _id: String,
+  category: String,
   sku: {
     type: String,
     unique: true,

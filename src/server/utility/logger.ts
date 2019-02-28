@@ -112,7 +112,6 @@ class Logger implements IndexStringSignature {
     return this._log(DEBUG, message);
   }
 
-
   /**
    * info
    * 
@@ -120,7 +119,6 @@ class Logger implements IndexStringSignature {
    * @param message any
    */
   info(message: any) {
-    console.log(message);
     return this._log(INFO, message);
   }
 
@@ -135,11 +133,10 @@ class Logger implements IndexStringSignature {
   }
 
   /**
-    * 
-    * @param {number} level 
-    * @param {string} error 
-    * @param {*} name 
-    */
+   * 
+   * @param {string} level 
+   * @param {string} error 
+   */
   private _log(level: string, message: string){
     if(_allowed_log_types[this._level].indexOf(level) === -1) {
       return;

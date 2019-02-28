@@ -42,7 +42,7 @@ import { ApolloServer } from 'apollo-server-koa';
  * 
  * NodeJs https server
  */
-import https from 'https';
+import * as https from 'https';
 
 /**
  * readFileSync
@@ -107,11 +107,10 @@ const server: ApolloServer = new ApolloServer(schema);
  * 
  * Setting up the mongoose to connect with MongoDb database
  */
-mongoose.connect(config.database.URI, {
-  useMongoClient: true
+mongoose.connect(config.database.URI);
+mongoose.connection.on('error', error => {
+  logger.error(error);
 });
-mongoose.connection.on('error', logger.error);
-mongoose.Promise = global.Promise;
 
 /**
  * app
