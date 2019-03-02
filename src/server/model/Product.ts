@@ -21,6 +21,11 @@ const ProductSchema = new mongoose.Schema({
     currencry: String,
     value: mongoose.Types.Decimal128
   }
+}, {
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  }
 });
 
 export default mongoose.model('product', ProductSchema);

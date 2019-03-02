@@ -38,11 +38,11 @@ import * as mongoose from 'mongoose';
 import { ApolloServer } from 'apollo-server-koa';
 
 /**
- * https
+ * http2
  * 
- * NodeJs https server
+ * NodeJs http2 server
  */
-import * as https from 'https';
+import * as http2 from 'http2';
 
 /**
  * readFileSync
@@ -66,15 +66,6 @@ import config from './server/config';
 import schema from './server/schema';
 
 /**
- * router
- * 
- * KoaCart application router
- * 
- * for / and /admin only
- */
-import router from './server/router';
-
-/**
  * response
  * 
  * Response middleware to track requests and response
@@ -96,6 +87,13 @@ import logger from './server/utility/logger';
 import { getTemplatePath } from './server/utility/helper';
 
 /**
+ * universal
+ * 
+ * middleware for angular universal
+ */
+import universal from './server/middleware/universal';
+
+/**
  * server
  * 
  * AplloServer
@@ -107,7 +105,9 @@ const server: ApolloServer = new ApolloServer(schema);
  * 
  * Setting up the mongoose to connect with MongoDb database
  */
-mongoose.connect(config.database.URI);
+mongoose.connect(config.database.URI, {
+  useNewUrlParser: true
+});
 mongoose.connection.on('error', error => {
   logger.error(error);
 });
@@ -120,21 +120,34 @@ mongoose.connection.on('error', error => {
 const app: Koa = new Koa();
 
 app
-  .use(router)
   .use(response)
-  .use(serve(getTemplatePath()));
+  .use(serve(getTemplatePath(), {
+    root: __dirname,
+    index: false,
+    gzip: true,
+    brotli: true
+  }))
+  .use(universal);
 
 server.applyMiddleware({ app });
 
 if(config.app.PROTOCOL.toLowerCase() === 'https' && config.app.SSL_CERT !== '' && config.app.SSL_KEY !== '') {
-  https.createServer({
+  const _server: http2.Http2SecureServer = http2.createSecureServer({
     key: readFileSync(config.app.SSL_KEY, 'utf8'),
     cert: readFileSync(config.app.SSL_CERT, 'utf8')
   }, app.callback()).listen(config.app.PORT, config.app.HOST, () => {
     console.log(`Server started at ${config.app.PROTOCOL}://${config.app.HOST}:${config.app.PORT}`);
     logger.info(`Server started at ${config.app.PROTOCOL}://${config.app.HOST}:${config.app.PORT}`);
   });
+
+  _server.on('error', error => {
+    logger.error(error);
+  });
 }else {
+  app.on('error', error => {
+    logger.error(error);
+  });
+
   app.listen(config.app.PORT, config.app.HOST, () => {
     console.log(`Server started at ${config.app.PROTOCOL}://${config.app.HOST}:${config.app.PORT}`);
     logger.info(`Server started at ${config.app.PROTOCOL}://${config.app.HOST}:${config.app.PORT}`);

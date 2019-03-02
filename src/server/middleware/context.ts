@@ -5,13 +5,6 @@
  */
 
 /**
- * Context
- * 
- * Context type
- */
-import { Context } from 'apollo-server-core';
-
-/**
  * responses, elapseTime from helper
  */
 import { to } from '../utility/helper';
@@ -36,7 +29,7 @@ import Session from '../utility/session';
  * responee middleware for Koa
  * @param {object} context
  */
-export default async (context: Context) => {
+export default async (context: any) => {
   const _context = {...context};
 
   if(!_context.ctx) {

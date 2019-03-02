@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'app-shop'}),
+    BrowserModule.withServerTransition({appId: 'koa-cart'}),
     AppRoutingModule
   ],
   providers: [],

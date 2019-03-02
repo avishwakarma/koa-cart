@@ -8,6 +8,14 @@ class AuthContoller  {
       email: 'akvlko@gmailcom'
     }
   }
+
+  register(root: Source, args: ArgumentNode, context: Context): any {
+
+  }
+
+  logout(root: Source, args: ArgumentNode, context: Context) : any {
+    
+  }
 }
 
 export default new AuthContoller();

@@ -34,6 +34,11 @@ const UserSchema = new mongoose.Schema({
   state: String,
   country: String,
   pincode: Number
+}, {
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+  }
 });
 
 export default mongoose.model('user', UserSchema);

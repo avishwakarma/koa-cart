@@ -27,20 +27,6 @@
  import config from '../config';
  
  /**
-  * privateKey
-  * 
-  * Private Key file for JWT sign method
-  */
- const privateKey: string = readFileSync(config.jwt.PRIVATE_KEY, 'utf8');
- 
- /**
-  * publicKey
-  * 
-  * Public Key file for JWT verify method
-  */
- const publicKey: string = readFileSync(config.jwt.PUBLIC_KEY, 'utf8');
- 
- /**
   * message
   * 
   * Application message
@@ -61,6 +47,19 @@
   */
  class Session {
    /**
+    * publicKey
+    * 
+    * Public Key file for JWT verify method
+    */
+   //private _public_key: string = readFileSync(config.jwt.PUBLIC_KEY, 'utf8');
+
+   /**
+    * privateKey
+    * 
+    * Private Key file for JWT sign method
+    */
+   private _private_key: string = readFileSync(config.jwt.PRIVATE_KEY, 'utf8');
+   /**
     * verify
     * 
     * Validate token
@@ -68,18 +67,20 @@
     */
    async verify(token: string) {
      try {
-       const payload = verify(token, publicKey, {
+       const payload = verify(token, this._private_key, {
          algorithms: ["RS256"]
        });
        if (payload) {
         return payload;
        }
-     } catch (err) {
-       logger.error(err);
+
+       return false;
+     } catch (error) {
+       logger.error(error);
        
        throw {
          message: message.INVALID_TOKEN,
-         name: 'Authorization Error'
+         name: 'INVALID_TOKEN'
        };
      }
    }
@@ -92,16 +93,15 @@
     */
    async set(user: any) {
      try {
-       const payload = {
+       return sign({
          user
-       };
-       return sign(payload, privateKey, {
+       }, this._private_key, {
          algorithm: "RS256",
          expiresIn: config.jwt.EXPIRY,
          issuer: config.jwt.ISSUER
        });
-     } catch (err) {
-       logger.error(err);
+     } catch (error) {
+       logger.error(error);
      }
    }
  }

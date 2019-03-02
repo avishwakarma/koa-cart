@@ -13,7 +13,7 @@ const database: {[index: string]: any} = {
 database['URI'] = `mongodb://${database.HOST}/${database.NAME}`;
 
 if(database.USER !== '') {
-  database['URI'] = `mongodb://${database.user}:${encodeURIComponent(database.password)}@${database.host}:${database.port}/${database.name}?authSource=${database.AUTH_SOURCE}`;
+  database['URI'] = `mongodb://${database.USER}:${encodeURIComponent(database.PASSWORD)}@${database.HOST}:${database.PORT}/${database.NAME}?authSource=${database.AUTH_SOURCE}`;
 }
 
 export default database;
